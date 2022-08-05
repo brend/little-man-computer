@@ -10,17 +10,17 @@ typedef struct {
 } LMC;
 
 typedef enum {
-    ADD = 1,
-    SUB = 2,
-    STA = 3,
-    LDA = 5,
-    BRA = 6,
-    BRZ = 7,
-    BRP = 8,
-    INP = 901,
-    OUT = 902,
-    HLT = 0,
-    DAT = 1024
+    OP_ADD = 1,
+    OP_SUB = 2,
+    OP_STA = 3,
+    OP_LDA = 5,
+    OP_BRA = 6,
+    OP_BRZ = 7,
+    OP_BRP = 8,
+    OP_INP = 901,
+    OP_OUT = 902,
+    OP_HLT = 0,
+    OP_DAT = 1024
 } INSTRUCTION;
 
 typedef enum {

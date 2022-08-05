@@ -8,11 +8,11 @@ INSTRUCTION opcode(int i, int *operand) {
 
     switch (i) {
     case 901:
-        return INP;
+        return OP_INP;
     case 902:
-        return OUT;
+        return OP_OUT;
     case 0:
-        return HLT;
+        return OP_HLT;
     default:
         *operand = i % 100;
 
@@ -48,7 +48,7 @@ void run_program(LMC lmc) {
         ++lmc.pc;
 
         switch (op) {
-        case ADD:
+        case OP_ADD:
             lmc.accumulator += lmc.mailbox[operand];
 
             if (lmc.accumulator >= 100) {
@@ -56,7 +56,7 @@ void run_program(LMC lmc) {
                 lmc.zeroFlag = 1;
             }
             break;
-        case SUB:
+        case OP_SUB:
             lmc.accumulator -= lmc.mailbox[operand];
 
             if (lmc.accumulator < 0) {
@@ -64,35 +64,35 @@ void run_program(LMC lmc) {
                 lmc.zeroFlag = 1;
             }
             break;
-        case STA:
+        case OP_STA:
             lmc.mailbox[operand] = lmc.accumulator;
             break;
-        case LDA:
+        case OP_LDA:
             lmc.accumulator = lmc.mailbox[operand];
             break;
-        case BRA:
+        case OP_BRA:
             lmc.pc = operand;
             break;
-        case BRZ:
+        case OP_BRZ:
             if (lmc.accumulator && !lmc.zeroFlag) {
                 lmc.pc = operand;
             }
             break;
-        case BRP:
+        case OP_BRP:
             if (lmc.zeroFlag) {
                 lmc.pc = operand;
             }
             break;
-        case INP:
+        case OP_INP:
             lmc.accumulator = read_inbox();
             break;
-        case OUT:
+        case OP_OUT:
             write_outbox(lmc.accumulator);
             break;
-        case HLT:
+        case OP_HLT:
             printf("*** HLT\n");
             return;
-        case DAT:
+        case OP_DAT:
             break;
         default:
             fprintf(stderr, "*** UNKNOWN INSTRUCTION: %i\n", i);
