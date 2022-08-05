@@ -1,6 +1,7 @@
 #include "lmc.h"
 #include <stdio.h>
 #include <stdarg.h>
+#include <stdlib.h>
 
 INSTRUCTION opcode(int i, int *operand) {
     *operand = 0;
@@ -30,6 +31,11 @@ int read_inbox() {
     scanf("%d", &i);
     printf("\n");
 
+    if (i < 0 || i > 99) {
+        printf("*** OUT OF RANGE\n");
+        exit(ERR_USER_INPUT_OUT_OF_RANGE);
+    }
+
     return i;
 }
 
@@ -44,9 +50,19 @@ void run_program(LMC lmc) {
         switch (op) {
         case ADD:
             lmc.accumulator += lmc.mailbox[operand];
+
+            if (lmc.accumulator >= 100) {
+                lmc.accumulator = 0;
+                lmc.zeroFlag = 1;
+            }
             break;
         case SUB:
             lmc.accumulator -= lmc.mailbox[operand];
+
+            if (lmc.accumulator < 0) {
+                lmc.accumulator = 0;
+                lmc.zeroFlag = 1;
+            }
             break;
         case STA:
             lmc.mailbox[operand] = lmc.accumulator;

@@ -23,6 +23,11 @@ typedef enum {
     DAT = 1024
 } INSTRUCTION;
 
+typedef enum {
+    ERR_USER_INPUT_OUT_OF_RANGE = -2,
+    ERR_CONSTANT_OUT_OF_RANGE = -3
+} ERROR;
+
 LMC enter_program(int mailbox0, ...);
 
 void run_program(LMC lmc);
