@@ -29,7 +29,6 @@ int read_inbox() {
 
     printf("Enter a number: ");
     scanf("%d", &i);
-    printf("\n");
 
     if (i < 0 || i > 99) {
         printf("*** OUT OF RANGE\n");
