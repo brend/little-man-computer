@@ -24,8 +24,12 @@ typedef enum {
 } INSTRUCTION;
 
 typedef enum {
-    ERR_USER_INPUT_OUT_OF_RANGE = -2,
-    ERR_CONSTANT_OUT_OF_RANGE = -3
+    ERR_USER_INPUT_OUT_OF_RANGE     = 2,
+    ERR_CONSTANT_OUT_OF_RANGE       = 3,
+    ERR_OPEN_FILE                   = 4,
+    ERR_PROGRAM_TOO_LONG            = 5,
+    ERR_TOO_MANY_TOKENS             = 6,
+    ERR_UNKNOWN_INSTRUCTION         = 7,
 } ERROR;
 
 LMC enter_program(int mailbox0, ...);

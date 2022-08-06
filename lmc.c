@@ -74,7 +74,7 @@ void run_program(LMC lmc) {
             lmc.pc = operand;
             break;
         case OP_BRZ:
-            if (lmc.accumulator && !lmc.zeroFlag) {
+            if (lmc.accumulator == 0) {
                 lmc.pc = operand;
             }
             break;

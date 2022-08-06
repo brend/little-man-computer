@@ -1,19 +1,15 @@
 #include <stdio.h>
 
 #include "lmc.h"
+#include "parser.h"
 
-int main() {
-    LMC lmc = enter_program(
-        8,
-        901,
-        308,
-        901,
-        309,
-        508,
-        209,
-        902,
-        000
-    );
+int main(int argc, char **argv) {
+    if (argc < 2) {
+        printf("usage: lmc <filename.lmc>\n");
+        return 0;
+    }
+
+    LMC lmc = parse(argv[1]);
 
     run_program(lmc);
     
