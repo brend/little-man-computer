@@ -130,8 +130,16 @@ INSTRUCTION parse_inst(const char *s) {
     return -1;
 }
 
-TOKEN tokenize_line(const char *line) {
+TOKEN tokenize_line(char *line) {
     TOKEN t = {0};
+
+    // strip comments
+    for (int k = 0; k < strlen(line); ++k) {
+        if (line[k] == '/') {
+            line[k] = 0;
+        }
+    }
+
     char **words = split(line);
     int word_count = 0;
 

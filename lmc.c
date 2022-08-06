@@ -51,7 +51,7 @@ void run_program(LMC lmc) {
         case OP_ADD:
             lmc.accumulator += lmc.mailbox[operand];
 
-            if (lmc.accumulator >= 100) {
+            if (lmc.accumulator >= 1000) {
                 lmc.accumulator = 0;
                 lmc.zeroFlag = 1;
             }
